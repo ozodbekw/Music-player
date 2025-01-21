@@ -15,7 +15,10 @@ const songs = [
   "Konsta - Odamlar nima deydi",
 ];
 
+let songIndex = 0;
+
 play.addEventListener("click", () => {
+  audio.src = `music/${songs[songIndex]}.mp3`;
   audio.play();
   play.classList.add("hidden");
   pause.classList.remove("hidden");
@@ -27,9 +30,20 @@ pause.addEventListener("click", () => {
 });
 
 forward.addEventListener("click", () => {
-  audio.src = `music/${songs[1]}.mp3`;
-  songImage.src = `albums/${songs[1]}.jpg`;
-  songTitle.textContent = songs[1];
+  songIndex++;
+  audio.src = `music/${songs[songIndex]}.mp3`;
+  songImage.src = `albums/${songs[songIndex]}.jpg`;
+  songTitle.textContent = songs[songIndex];
+  audio.play();
+  play.classList.add("hidden");
+  pause.classList.remove("hidden");
+});
+
+backward.addEventListener("click", () => {
+  songIndex--;
+  audio.src = `music/${songs[songIndex]}.mp3`;
+  songImage.src = `albums/${songs[songIndex]}.jpg`;
+  songTitle.textContent = songs[songIndex];
   audio.play();
   play.classList.add("hidden");
   pause.classList.remove("hidden");
