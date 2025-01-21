@@ -17,6 +17,13 @@ const songs = [
 
 let songIndex = 0;
 
+if (songIndex > songs.length) {
+  songIndex === 0;
+}
+if (songIndex === 0) {
+  songIndex === songs.length - 1;
+}
+
 play.addEventListener("click", () => {
   audio.src = `music/${songs[songIndex]}.mp3`;
   audio.play();
