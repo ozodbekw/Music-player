@@ -1,128 +1,128 @@
-@font-face {
-  font-display: swap;
-  font-family: "Dosis";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/dosis-v32-latin-regular.woff2") format("woff2");
-}
+@import url(https://fonts.googleapis.com/css2?family=Bitter:wght@100;200;300;400;500;600;700&display=swap);
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: "Dosis", sans-serif;
-  background: #7b4397;
-  background: -webkit-linear-gradient(to right, #dc2430, #7b4397);
-  background: linear-gradient(to right, #dc2430, #7b4397);
+  font-family: "Bitter", serif;
+  background: #dfe7ef;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: #71829e;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+  transition: 0.3s;
+  &:hover button::after {
+    content: "";
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}
+
+i {
+  padding: 5px;
+  cursor: pointer;
+  color: #acb8cc;
+  background-color: transparent;
+  transition: 0.3s ease;
+  border-radius: 50%;
+  position: relative;
+  transition: 1s ease;
+  width: 50px;
+  height: 50px;
+  &:hover {
+    box-shadow: 10px 10px 40px 0px rgba(76, 70, 124, 0.5);
+  }
+}
+
+.player {
+  background: #eef3f7;
+  width: 410px;
+  min-height: 480px;
+  box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+  border-radius: 15px;
+  padding: 30px;
+}
+.top {
+  display: flex;
+}
+.player-img {
+  position: relative;
+  left: -60px;
+  height: 300px;
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0px 10px 40px 20px rgba(76, 70, 124, 0.5);
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .hidden {
   display: none;
 }
 
-button {
-  font-family: inherit;
-  border-radius: 10px;
-  background: transparent;
-  border: 0;
+.like {
+  color: red;
 }
 
-.card {
-  background-color: rgba(0, 0, 0, 0.4);
-  height: 650px;
-  width: 550px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: rgba(0, 0, 0, 0.6) 80px 50px 20px 6px;
-}
-.card__title {
-  color: #fcfaf5;
-  font-size: 35px;
-  font-weight: 400;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  margin-bottom: 20px;
+.btn {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
 }
 
-.card__image {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  margin-bottom: 30px;
-  animation-play-state: paused;
+#btnPlay,
+#btnPause {
+  position: relative;
+  i {
+    color: #fff;
+    padding: 10px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+
+    position: absolute;
+    left: -15px;
+  }
 }
 
-.card__input {
-  width: 80%;
-  margin-bottom: 30px;
-  background-color: #fcfaf5;
-  border-radius: 15px;
+#songTitle {
+  margin-top: 25px;
+  font-size: 25px;
+}
+
+.proccess {
+  margin-top: 25px;
+  background-color: #afbcd1;
+  width: 95%;
   height: 5px;
-  -webkit-appearance: none;
+  border-radius: 15px;
+  div {
+    margin-top: -10px;
+    height: inherit;
+    border-radius: inherit;
+    background-color: #71829e;
+  }
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #dc2430;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.buttons {
+.time {
+  margin-top: 10px;
+  width: 95%;
   display: flex;
-  gap: 20px;
-}
-
-.buttons button {
-  font-size: 35px;
-  svg {
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    transition: 0.8s;
-  }
-}
-
-.volume {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.card__input-volume {
-  width: 80px;
-}
-
-.volume__number {
-  color: #fcfaf5;
-  font-weight: 600;
-  width: 10px;
-}
-
-.animation {
-  animation: songAnimation 10s linear infinite;
-}
-
-@keyframes songAnimation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  justify-content: space-between;
 }

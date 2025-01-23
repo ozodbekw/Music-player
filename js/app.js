@@ -1,12 +1,15 @@
-const audio = document.getElementById("audio");
-const songTitle = document.getElementById("music-title");
-const songImage = document.getElementById("music-image");
-const backward = document.getElementById("backward");
-const play = document.getElementById("play");
-const pause = document.getElementById("pause");
-const forward = document.getElementById("forward");
-const musicVolume = document.querySelector(".card__input-volume");
-const volumeNumber = document.querySelector(".volume__number");
+const musicImage = document.getElementById("musicImage");
+const heart = document.getElementById("heart");
+const backward = document.querySelector("#arrowLeft");
+const forward = document.getElementById("arrowRight");
+const btnPlay = document.querySelector("#btnPlay");
+const btnPause = document.querySelector("#btnPause");
+const music = document.getElementById("music");
+const playIcon = document.getElementById("playIcon");
+const songTitle = document.getElementById("songTitle");
+const proccessDuration = document.getElementById("proccessDiv");
+const musicTime = document.getElementById("musicTime");
+const musicDuration = document.getElementById("musicDuration");
 
 const songs = [
   "Konsta - Qahramonlar",
@@ -17,48 +20,66 @@ const songs = [
 
 let songIndex = 0;
 
-if (songIndex > songs.length) {
-  songIndex === 0;
-}
-if (songIndex === 0) {
-  songIndex === songs.length - 1;
+function changeMusic(index) {
+  music.src = `../music/${songs[index]}.mp3`;
+  songTitle.textContent = `${songs[index]}`;
+  musicImage.src = `../albums/${songs[index]}.jpg`;
 }
 
-play.addEventListener("click", () => {
-  audio.src = `music/${songs[songIndex]}.mp3`;
-  audio.play();
-  play.classList.add("hidden");
-  pause.classList.remove("hidden");
-});
-pause.addEventListener("click", () => {
-  audio.pause();
-  pause.classList.add("hidden");
-  play.classList.remove("hidden");
-});
+function musicPlay() {
+  btnPlay.classList.add("hidden");
+  btnPause.classList.remove("hidden");
 
-forward.addEventListener("click", () => {
+  music.play();
+}
+function musicPause() {
+  btnPlay.classList.remove("hidden");
+  btnPause.classList.add("hidden");
+  music.pause();
+}
+
+function nextMusic() {
+  if (songs.length - 1 <= songIndex) {
+    songIndex = -1;
+  }
   songIndex++;
-  audio.src = `music/${songs[songIndex]}.mp3`;
-  songImage.src = `albums/${songs[songIndex]}.jpg`;
-  songTitle.textContent = songs[songIndex];
-  audio.play();
-  play.classList.add("hidden");
-  pause.classList.remove("hidden");
-});
+  changeMusic(songIndex);
 
-backward.addEventListener("click", () => {
+  musicPlay();
+}
+
+function prevMusic() {
+  if (songIndex <= 0) {
+    songIndex = songs.length;
+  }
   songIndex--;
-  audio.src = `music/${songs[songIndex]}.mp3`;
-  songImage.src = `albums/${songs[songIndex]}.jpg`;
-  songTitle.textContent = songs[songIndex];
-  audio.play();
-  play.classList.add("hidden");
-  pause.classList.remove("hidden");
-});
+  changeMusic(songIndex);
+  musicPlay();
+}
 
-audio.volume = musicVolume.value / 100;
+function toSecond(second) {
+  const minutes = Math.floor(second / 60);
+  const seconds = Math.floor(second % 60);
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+}
 
-musicVolume.addEventListener("input", () => {
-  audio.volume = musicVolume.value / 100;
-  volumeNumber.textContent = musicVolume.value;
+function musicPlaying() {
+  let duration = music.duration;
+  let currentTime = music.currentTime;
+
+  musicTime.textContent = toSecond(currentTime);
+  musicDuration.textContent = toSecond(duration);
+
+  proccessDuration.style.width = `${(currentTime / duration) * 100}%`;
+}
+
+btnPlay.addEventListener("click", musicPlay);
+btnPause.addEventListener("click", musicPause);
+forward.addEventListener("click", nextMusic);
+backward.addEventListener("click", prevMusic);
+music.addEventListener("ended", nextMusic);
+music.addEventListener("timeupdate", musicPlaying);
+
+heart.addEventListener("click", () => {
+  heart.classList.toggle("like");
 });
