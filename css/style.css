@@ -126,3 +126,22 @@ i {
   display: flex;
   justify-content: space-between;
 }
+
+.animation {
+  animation: songAnimation 10s linear infinite;
+  animation-play-state: paused;
+}
+
+.player.playing .animation {
+  animation-play-state: running;
+  border-radius: 50%;
+}
+
+@keyframes songAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
