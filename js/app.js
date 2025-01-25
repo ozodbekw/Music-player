@@ -10,6 +10,7 @@ const songTitle = document.getElementById("songTitle");
 const proccessDuration = document.getElementById("proccessDiv");
 const musicTime = document.getElementById("musicTime");
 const musicDuration = document.getElementById("musicDuration");
+const player = document.querySelector(".player");
 
 const songs = [
   "Konsta - Qahramonlar",
@@ -29,12 +30,13 @@ function changeMusic(index) {
 function musicPlay() {
   btnPlay.classList.add("hidden");
   btnPause.classList.remove("hidden");
-
+  player.classList.add("playing");
   music.play();
 }
 function musicPause() {
   btnPlay.classList.remove("hidden");
   btnPause.classList.add("hidden");
+  player.classList.remove("playing");
   music.pause();
 }
 
@@ -64,8 +66,8 @@ function toSecond(second) {
 }
 
 function musicPlaying() {
-  let duration = music.duration;
-  let currentTime = music.currentTime;
+  let duration = music.duration || 0;
+  let currentTime = music.currentTime || 0;
 
   musicTime.textContent = toSecond(currentTime);
   musicDuration.textContent = toSecond(duration);
