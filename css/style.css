@@ -127,7 +127,7 @@ i {
   justify-content: space-between;
 }
 
-.animation {
+/* .animation {
   animation: songAnimation 10s linear infinite;
   animation-play-state: paused;
 }
@@ -144,4 +144,4 @@ i {
   to {
     transform: rotate(360deg);
   }
-}
+} */
