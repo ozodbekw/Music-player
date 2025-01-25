@@ -66,8 +66,8 @@ function toSecond(second) {
 }
 
 function musicPlaying() {
-  let duration = music.duration;
-  let currentTime = music.currentTime;
+  let duration = music.duration || 0;
+  let currentTime = music.currentTime || 0;
 
   musicTime.textContent = toSecond(currentTime);
   musicDuration.textContent = toSecond(duration);
