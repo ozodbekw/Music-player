@@ -89,12 +89,12 @@ i {
 #btnPause {
   position: relative;
   i {
-    color: #fff;
+    color: #acb8cc;
     padding: 10px;
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: 5px solid #fff;
+    border: 5px solid #acb8cc;
 
     position: absolute;
     left: -15px;
